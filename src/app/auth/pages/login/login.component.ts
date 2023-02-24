@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import Swal from "sweetalert2";
 import { AuthService } from "../../services/auth.service";
+import { IAuthUser } from "../../interfaces/interfaces";
 
 @Component({
   selector: "app-login",
@@ -29,7 +30,12 @@ export class LoginComponent {
 
     const { email, password } = this.miFormulario.value;
 
-    this.authService.login(email, password)
+    const body: IAuthUser = {
+      email,
+      password
+    };
+
+    this.authService.login(body)
       .subscribe(resp => {
         if (resp.id !== "0") {
           this.route.navigateByUrl("/dashboard");
