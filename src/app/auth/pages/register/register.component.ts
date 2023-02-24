@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import Swal from "sweetalert2";
 import { AuthService } from "../../services/auth.service";
+import { IRegisterUser } from '../../interfaces/interfaces';
 
 @Component({
   selector: "app-register",
@@ -32,8 +33,21 @@ export class RegisterComponent {
     // tslint:disable-next-line: max-line-length
     const { title, firstName, lastName, email, linkCV, englishLevel, technicalSkills, password, confirmPassword, acceptTerms } = this.miFormulario.value;
 
+    const body: IRegisterUser = {
+      title,
+      firstName,
+      lastName,
+      email,
+      linkCV,
+      englishLevel,
+      technicalSkills,
+      password,
+      confirmPassword,
+      acceptTerms
+    };
+
     // tslint:disable-next-line: max-line-length
-    this.authService.register(title, firstName, lastName, email, linkCV, englishLevel, technicalSkills, password, confirmPassword, acceptTerms)
+    this.authService.register(body)
       .subscribe(resp => {
         if (resp.message.includes("Registro realizado con éxito")) {
           Swal.fire("Success", resp.message, "success");

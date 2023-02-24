@@ -22,31 +22,9 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   // tslint:disable-next-line: max-line-length
-  register(title: string,
-           firstName: string,
-           lastName: string,
-           email: string,
-           linkCV: string,
-           englishLevel: string,
-           technicalSkills: string,
-           password: string,
-           confirmPassword: string,
-           acceptTerms: boolean): Observable<IRegisterUserResponse> {
+  register(body: IRegisterUser): Observable<IRegisterUserResponse> {
 
     const url: string = `${this.baseUrl}/accounts/register`;
-
-    const body: IRegisterUser = {
-      title,
-      firstName,
-      lastName,
-      email,
-      linkCV,
-      englishLevel,
-      technicalSkills,
-      password,
-      confirmPassword,
-      acceptTerms
-    };
 
     return this.http.post<IRegisterUserResponse>(url, body);
 
