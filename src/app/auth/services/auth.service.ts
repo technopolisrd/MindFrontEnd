@@ -30,13 +30,8 @@ export class AuthService {
 
   }
 
-  login(email: string, password: string): Observable<IAuthResponse> {
+  login(body: IAuthUser): Observable<IAuthResponse> {
     const url: string = `${this.baseUrl}/accounts/authenticate`;
-
-    const body: IAuthUser = {
-      email,
-      password
-    };
 
     return this.http.post<IAuthResponse>(url, body)
       .pipe(
