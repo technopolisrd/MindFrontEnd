@@ -1,5 +1,5 @@
 // tslint:disable-next-line: typedef
 export const environment = {
     production: true,
-    baseURL: "https://localhost:44301/api/v1"
+    baseURL: "http://localhost:7165/api/v1"
   };
